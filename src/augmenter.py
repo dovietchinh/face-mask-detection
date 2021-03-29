@@ -320,10 +320,21 @@ arg_dict = {
 class RandomAugment(object):
 
     def __init__(self, N=4, M=10):
+        """[summary]
+
+        Args:
+            N (int, optional): [numbers of transformations will apply to image seuqentially]. Defaults to 4.
+            M (int, optional): [policy for each transformations, see ]. Defaults to 10.
+        """
         self.N = N
         self.M = M
 
     def get_random_ops(self):
+        """[pick randomly N transformation functions in ops dictionary]
+
+        Returns:
+            [type]: [return list of transformation functions]
+        """        
         n = np.random.randint(1,self.N)
         sampled_ops = np.random.choice(list(func_dict.keys()), n)
         return [(op, 1, np.random.randint(self.M//2,self.M+1)) for op in sampled_ops]
@@ -340,4 +351,4 @@ class RandomAugment(object):
         return img
 
 
-#augmenter = RandomAugment()
+

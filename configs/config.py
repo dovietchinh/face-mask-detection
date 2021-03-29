@@ -10,7 +10,8 @@ date:
 
 INPUT_SHAPE = 112
 CONV2D_PARAMS = [ (64,3), (128,3), (256,3), (512,3), (1024,3) ]          #every elemens is a paris (num_of_channel, kernel_size) in Conv2D layer
-MODEL = {
+"""
+MODEL_ARCHITECTURE = {
     'Conv2D_1':{
         'num_channel' : 64,
         'kernel_size' : 3,
@@ -48,6 +49,7 @@ MODEL = {
         'pooling': True,
     },
 }
+"""
 FC_PARAMS = [ (1024,'relu'),
              (1,'sigmoid'), 
 ]
@@ -56,8 +58,9 @@ FC_PARAMS = [ (1024,'relu'),
 
 # Training
 
-EPOCHS = 100
+EPOCHS = 50
 INIT_EPOCH = 0                                 
+BATCH_SIZE = 32
 OPTIMIZER = 'Adam'                              # [str]
 LEARNING_RATE = None                           # [float] initial learning rate
 LOSS_FUNCTION = 'binary_crossentropy'          # [str]
@@ -74,3 +77,6 @@ N = 4
 M = 10
 
 
+# Preprocess data 
+
+PADDING = True

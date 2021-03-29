@@ -25,7 +25,8 @@ import pathlib
 
 INPUT_SHAPE = config.INPUT_SHAPE
 EPOCHS = config.EPOCHS
-INIT_EPOCH = config.INIT_EPOCH                                 
+INIT_EPOCH = config.INIT_EPOCH    
+BATCH_SIZE = config.BATCH_SIZE                             
 OPTIMIZER = config.OPTIMIZER                              
 LEARNING_RATE = config.LEARNING_RATE                    
 LOSS_FUNCTION = config.LOSS_FUNCTION
@@ -43,9 +44,9 @@ file_csv = '/u01/DATA/AGE_GENDER/RMFD_resize/mask_mouth_data.csv'
 df = pd.read_csv(file_csv)
 df_train,df_val,df_test = split_data(df)
 
-data_sequence_train = DataSequence(data_folder, df_train, batch_size=32, phase='train')
-data_sequence_val = DataSequence(data_folder, df_val, batch_size=32, phase='val')
-data_sequence_test = DataSequence(data_folder, df_test, batch_size=32, phase='test')
+data_sequence_train = DataSequence(data_folder, df_train, batch_size=BATCH_SIZE, phase='train')
+data_sequence_val = DataSequence(data_folder, df_val, batch_size=BATCH_SIZE, phase='val')
+data_sequence_test = DataSequence(data_folder, df_test, batch_size=BATCH_SIZE, phase='test')
 
 model = build_model((INPUT_SHAPE,INPUT_SHAPE,3), CONV2D_PARAMS, FC_PARAMS)
 
@@ -64,8 +65,8 @@ tb = TensorBoard(log_dir=log_path, write_graph=True)
 
 lr_scheduler = LearningRateScheduler(lr_function)
 model.fit(data_sequence_train,
-                    epochs=100,
-                    initial_epoch=0,
+                    epochs=EPOCHS,
+                    initial_epoch=INIT_EPOCH,    
                     validation_data=data_sequence_val,
                     use_multiprocessing=config.USE_MULTIPROCESS,
                     callbacks=[mc,tb,lr_scheduler],

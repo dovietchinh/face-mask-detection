@@ -28,6 +28,18 @@ SHUFFLE_DATA = config.SHUFFLE_DATA
 augmenter = RandomAugment(N,M)
 
 class DataSequence(tf.keras.utils.Sequence):
+    """DataSequence : ( TENSORFLOW )
+        class define will wraper folowing steps:
+            - reading images
+            - normalizing images
+            - fetching a minibatch of data and collating them into batched samples
+            - shuffle data if configs.SHUFFLE set to True
+    Args:
+        __init__  
+        __len__          return total steps per epoch
+        __getitem__      return a batched data (x,y)
+        on_epoch_end     this function will excute when reaching end of epochs
+    """
     def __init__(self,data_folder,data_frame, batch_size=32, phase = 'val'):
         try:
             assert phase in ['train','val','test'], "Invalid keyword, phase must be in 'train','val' or 'test'"

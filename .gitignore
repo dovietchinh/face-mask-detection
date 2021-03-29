@@ -127,3 +127,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.vscode
+__pycache__
+checkpoint 
+abc
+log
+abc.py
+predict.py
+models/*
+/src/evaluate.py
+train.csv
+val.csv

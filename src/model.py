@@ -40,6 +40,9 @@ def build_model(inputs_shape,conv2d_params,fc_params):
 
     return model
 
+
+
+"""
 class MyModel(tf.keras.Model):
     def __init__(self):
         super(MyModel, self).__init__()
@@ -69,7 +72,7 @@ class MyModel(tf.keras.Model):
         loss = self.compiled_loss(labels, predictions)
         self.compiled_metrics.update_state(labels, predictions)
         return {m.name: m.result() for m in self.metrics}
-
+"""
 
 
 if __name__ =='__main__':
