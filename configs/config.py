@@ -8,6 +8,8 @@ date:
 """
 # Model Architecture
 
+USE_GPU = True
+
 INPUT_SHAPE = 112
 CONV2D_PARAMS = [ (64,3), (128,3), (256,3), (512,3), (1024,3) ]          #every elemens is a paris (num_of_channel, kernel_size) in Conv2D layer
 """
